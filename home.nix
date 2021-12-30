@@ -18,6 +18,7 @@
     pkgs.fzf
     pkgs.ripgrep
     pkgs.neovim
+    pkgs.procps
     pkgs.tmux
   ];
 
@@ -27,6 +28,7 @@
   home.file.".vimrc.local.bundles".source = ./vimrc.local.bundles;
   home.file.".config/nvim/init.vim".source = ./nvim-init.vim;
   home.file.".tmux.conf".source = ./tmux.conf;
+  home.file.".tmux/plugins/tpm".source = ./tmux-plugins;
 
   # Git config using Home Manager modules
   programs.git = {
