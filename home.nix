@@ -12,7 +12,13 @@
   # Packages to install
   home.packages = [
     # pkgs is the set of all packages in the default home.nix implementation
+    pkgs.gnumake
+    pkgs.gcc
+    pkgs.nodejs-12_x
+    pkgs.fzf
+    pkgs.ripgrep
     pkgs.neovim
+    pkgs.tmux
   ];
 
   # Raw configuration files
@@ -20,6 +26,7 @@
   home.file.".vimrc.local".source = ./vimrc.local;
   home.file.".vimrc.local.bundles".source = ./vimrc.local.bundles;
   home.file.".config/nvim/init.vim".source = ./nvim-init.vim;
+  home.file.".tmux.conf".source = ./tmux.conf;
 
   # Git config using Home Manager modules
   programs.git = {
@@ -37,5 +44,5 @@
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "21.05";
+  home.stateVersion = "22.05";
 }

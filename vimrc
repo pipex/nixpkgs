@@ -54,7 +54,7 @@ Plug 'Shougo/vimproc.vim', {'do': g:make}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Syntax highlighting
-Plug 'https://github.com/nvim-treesitter/nvim-treesitter', { 'branch': '0.5-compat', 'do': ':TSUpdate' }
+Plug 'https://github.com/nvim-treesitter/nvim-treesitter', { 'branch': '0.5-compat' }
 
 "*****************************************************************************
 
