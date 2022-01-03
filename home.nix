@@ -20,8 +20,9 @@
     pkgs.neovim
     pkgs.procps
     pkgs.tmux
+    pkgs.mosh
   ];
-
+  
   # Raw configuration files
   home.file.".vimrc".source = ./vimrc;
   home.file.".vimrc.local".source = ./vimrc.local;
@@ -36,6 +37,28 @@
     userName = "flalanne";
     userEmail = "felipe@balena.io";
   };
+
+  programs.zsh = {
+    enable = true;
+    shellAliases = {
+      ll = "ls -l";
+      update = "home-manager switch";
+    };
+    localVariables={
+      TZ = "America/Santiago";
+    };
+    history = {
+      size = 10000;
+      path = "${config.xdg.dataHome}/zsh/history";
+    };
+
+    oh-my-zsh = {
+      enable = true;
+      plugins = [ "git" ];
+      theme = "theunraveler";
+    };
+  };
+
 
 
   # This value determines the Home Manager release that your

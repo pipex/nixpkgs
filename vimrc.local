@@ -1,9 +1,8 @@
 """ Personal preferences
 set background=dark             " Dark background
 let g:solarized_termtrans = 1   " solarized transparency
-silent! colorscheme solarized8  " Use solarized color scheme
+silent! colorscheme solarized8 " Use solarized color scheme
 
-""" Gui preferences
 if has("gui_running")
     set guifont="Source Code Pro for Powerline":h12
     "set guifont="Fira Code":h12
