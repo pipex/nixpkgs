@@ -17,7 +17,6 @@
     pkgs.neovim
     pkgs.procps
     pkgs.tmux
-    pkgs.mosh
     pkgs.curl
   ];
   
@@ -41,6 +40,7 @@
     shellAliases = {
       ll = "ls -l";
       update = "home-manager switch";
+      vi = "nvim";
     };
     localVariables={
       TZ = "America/Santiago";
