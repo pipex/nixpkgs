@@ -18,6 +18,7 @@
     pkgs.procps
     pkgs.tmux
     pkgs.mosh
+    pkgs.curl
   ];
   
   # Raw configuration files
