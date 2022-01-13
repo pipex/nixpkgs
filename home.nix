@@ -1,9 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
-
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "me";
@@ -33,7 +30,7 @@
 
   # Git config using Home Manager modules
   programs.git = {
-    enable = true;
+    enable = false;
     userName = "flalanne";
     userEmail = "felipe@balena.io";
   };
