@@ -21,12 +21,10 @@
   ];
   
   # Raw configuration files
-  home.file.".vimrc".source = ./vimrc;
-  home.file.".vimrc.local".source = ./vimrc.local;
-  home.file.".vimrc.local.bundles".source = ./vimrc.local.bundles;
-  home.file.".config/nvim/init.vim".source = ./nvim-init.vim;
+  home.file.".tmux/plugins/tpm".source = ./tools/tpm;
+  home.file.".config/nvim".source = ./tools/AstroVim;
+  home.file.".config/nvim/lua/user".source = ./astrovim-user;
   home.file.".tmux.conf".source = ./tmux.conf;
-  home.file.".tmux/plugins/tpm".source = ./tmux-plugins;
 
   # Git config using Home Manager modules
   programs.git = {
@@ -57,6 +55,25 @@
     };
   };
 
+  # Run additional scripts after install
+  home.activation = {
+    syncPackages = home-manager.lib.hm.dag.entryAfter ["writeBoundary"] ''
+      DRY=$DRY_RUN_CMD
+
+      # Install nvim packages
+      $DRY nvim +PackerSync
+
+      # Install tmux packages
+      # start a server but don't attach to it
+      $DRY tmux start-server
+      # create a new session but don't attach to it either
+      $DRY tmux new-session -d
+      # install the plugins
+      $DRY ~/.tmux/plugins/tpm/scripts/install_plugins.sh
+      # killing the server is not required, I guess
+      $DRY tmux kill-server
+    '';
+  };
 
 
   # This value determines the Home Manager release that your
