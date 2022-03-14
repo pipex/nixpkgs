@@ -57,7 +57,7 @@
 
   # Run additional scripts after install
   home.activation = {
-    syncPackages = home-manager.lib.hm.dag.entryAfter ["writeBoundary"] ''
+    syncPackages = lib.hm.dag.entryAfter ["writeBoundary"] ''
       DRY=$DRY_RUN_CMD
 
       # Install nvim packages
