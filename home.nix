@@ -22,8 +22,7 @@
   
   # Raw configuration files
   home.file.".tmux/plugins/tpm".source = ./tools/tpm;
-  home.file.".config/nvim".source = ./tools/AstroVim;
-  home.file.".config/nvim/lua/user".source = ./astrovim-user;
+  home.file.".config/nvim".source = ./AstroVim;
   home.file.".tmux.conf".source = ./tmux.conf;
 
   # Git config using Home Manager modules
@@ -61,7 +60,7 @@
       DRY=$DRY_RUN_CMD
 
       # Install nvim packages
-      $DRY nvim +PackerSync
+      $DRY nvim +PackerSync +qall
 
       # Install tmux packages
       # start a server but don't attach to it
