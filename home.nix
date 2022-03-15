@@ -60,7 +60,7 @@
       DRY=$DRY_RUN_CMD
 
       # Install nvim packages
-      $DRY nvim +PackerSync +qall
+      $DRY nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
       # Install tmux packages
       # start a server but don't attach to it
