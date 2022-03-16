@@ -60,17 +60,7 @@
       DRY=$DRY_RUN_CMD
 
       # Install nvim packages
-      $DRY nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-
-      # Install tmux packages
-      # start a server but don't attach to it
-      $DRY tmux start-server
-      # create a new session but don't attach to it either
-      $DRY tmux new-session -d
-      # install the plugins
-      $DRY ~/.tmux/plugins/tpm/scripts/install_plugins.sh
-      # killing the server is not required, I guess
-      $DRY tmux kill-server
+      $DRY nvim --headless +PackerSync -c 'autocmd User PackerComplete quitall'
     '';
   };
 
