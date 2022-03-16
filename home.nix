@@ -54,16 +54,6 @@
     };
   };
 
-  # Run additional scripts after install
-  home.activation = {
-    syncPackages = lib.hm.dag.entryAfter ["writeBoundary"] ''
-      DRY=$DRY_RUN_CMD
-
-      # Install nvim packages
-      $DRY nvim --headless +PackerSync -c 'autocmd User PackerComplete quitall'
-    '';
-  };
-
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
