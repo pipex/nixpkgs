@@ -21,9 +21,9 @@
   ];
   
   # Raw configuration files
-  home.file.".tmux/plugins/tpm".source = ./tools/tpm;
-  home.file.".config/nvim".source = ./AstroVim;
-  home.file.".tmux.conf".source = ./tmux.conf;
+  # home.file.".tmux/plugins/tpm".source = ./tools/tpm;
+  # home.file.".config/nvim".source = ./AstroVim;
+  # home.file.".tmux.conf".source = ./tmux.conf;
 
   # Git config using Home Manager modules
   programs.git = {
