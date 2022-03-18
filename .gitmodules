@@ -1,6 +1,0 @@
-[submodule "tools/tpm"]
-	path = tools/tpm
-	url = https://github.com/tmux-plugins/tpm.git
-[submodule "AstroVim"]
-	path = AstroVim
-	url = https://github.com/pipex/AstroVim.git
