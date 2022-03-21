@@ -22,8 +22,17 @@
   
   # Raw configuration files
   # home.file.".tmux/plugins/tpm".source = ./tools/tpm;
-  # home.file.".config/nvim".source = ./AstroVim;
   # home.file.".tmux.conf".source = ./tmux.conf;
+  # Install AstroVim
+  home.file.".config/nvim".recursive = true;
+  home.file.".config/nvim".source = pkgs.fetchFromGitHub {
+    owner = "kabinspace";
+    repo = "AstroVim";
+    rev = "v1.0.0";
+    sha256 = "1zb19a7wrzzh92m3vjjaz6wvl7qfwydg2zp0n4dwmjphbmwsr8v4";
+  };
+  home.file.".config/nvim/lua/user".source = ./astrovim;
+
 
   # Git config using Home Manager modules
   programs.git = {
