@@ -28,8 +28,8 @@
   home.file.".config/nvim".source = pkgs.fetchFromGitHub {
     owner = "kabinspace";
     repo = "AstroVim";
-    rev = "v1.0.0";
-    sha256 = "1zb19a7wrzzh92m3vjjaz6wvl7qfwydg2zp0n4dwmjphbmwsr8v4";
+    rev = "8478bba8c0bc9b0aaefd39fa3254c595db2a464d";
+    sha256 = "0x1vp0aywn45dh64pgxybyw2csfmf3gjh1cbg4jjflcgb8i488dz";
   };
   home.file.".config/nvim/lua/user".source = ./astrovim;
 
