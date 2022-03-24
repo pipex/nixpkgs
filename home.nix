@@ -18,6 +18,11 @@
     pkgs.procps
     pkgs.tmux
     pkgs.curl
+    pkgs.nixpkgs-fmt
+    pkgs.openssh
+    pkgs.lazygit
+    pkgs.stylua
+    pkgs.bash
   ];
 
   # Raw configuration files
@@ -36,17 +41,19 @@
 
   # Git config using Home Manager modules
   programs.git = {
-    enable = false;
+    enable = true;
     userName = "flalanne";
-    userEmail = "felipe@balena.io";
+    userEmail = "1822826+pipex@users.noreply.github.com";
   };
 
   programs.zsh = {
     enable = true;
+    enableCompletion = true;
     shellAliases = {
       ll = "ls -l";
       update = "home-manager switch";
       vi = "nvim";
+      lg = "lazygit";
     };
     localVariables = {
       TZ = "America/Santiago";
