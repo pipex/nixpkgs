@@ -42,7 +42,7 @@
   # Git config using Home Manager modules
   programs.git = {
     enable = true;
-    userName = "flalanne";
+    userName = "pipex";
     userEmail = "1822826+pipex@users.noreply.github.com";
   };
 
