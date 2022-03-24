@@ -37,6 +37,7 @@
     sha256 = "0x1vp0aywn45dh64pgxybyw2csfmf3gjh1cbg4jjflcgb8i488dz";
   };
   home.file.".config/nvim/lua/user".source = ./astrovim;
+  home.file."${config.xdg.configHome}/oh-my-zsh".source = ./oh-my-zsh;
 
 
   # Git config using Home Manager modules
@@ -57,6 +58,7 @@
     };
     localVariables = {
       TZ = "America/Santiago";
+      TERM = "screen-256color";
     };
     history = {
       size = 10000;
@@ -66,7 +68,8 @@
     oh-my-zsh = {
       enable = true;
       plugins = [ "git" ];
-      theme = "theunraveler";
+      custom = "${config.xdg.configHome}/oh-my-zsh";
+      theme = "pipex";
     };
   };
 
