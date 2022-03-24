@@ -19,7 +19,7 @@
     pkgs.tmux
     pkgs.curl
   ];
-  
+
   # Raw configuration files
   # home.file.".tmux/plugins/tpm".source = ./tools/tpm;
   # home.file.".tmux.conf".source = ./tmux.conf;
@@ -48,7 +48,7 @@
       update = "home-manager switch";
       vi = "nvim";
     };
-    localVariables={
+    localVariables = {
       TZ = "America/Santiago";
     };
     history = {
