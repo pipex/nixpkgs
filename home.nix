@@ -21,6 +21,7 @@
     pkgs.openssh
     pkgs.lazygit
     pkgs.stylua
+    pkgs.bash
   ];
 
   # Raw configuration files
@@ -37,7 +38,9 @@
   xdg.configFile."nvim/lua/user".source = ./astrovim;
   xdg.configFile."oh-my-zsh".source = ./oh-my-zsh;
 
-  xdg.configFile."tmux".source = ./tmux;
+  home.file.".tmux.conf".source = ./tmux/tmux.conf;
+  home.file.".tmux".recursive = true;
+  home.file.".tmux".source = ./tmux;
   home.file.".tmux/plugins/tpm".source = pkgs.fetchFromGitHub {
     owner = "tmux-plugins";
     repo = "tpm";
