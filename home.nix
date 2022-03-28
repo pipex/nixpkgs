@@ -29,16 +29,23 @@
   # home.file.".tmux/plugins/tpm".source = ./tools/tpm;
   # home.file.".tmux.conf".source = ./tmux.conf;
   # Install AstroVim
-  home.file.".config/nvim".recursive = true;
-  home.file.".config/nvim".source = pkgs.fetchFromGitHub {
+  xdg.configFile."nvim".recursive = true;
+  xdg.configFile."nvim".source = pkgs.fetchFromGitHub {
     owner = "kabinspace";
     repo = "AstroVim";
     rev = "8478bba8c0bc9b0aaefd39fa3254c595db2a464d";
     sha256 = "0x1vp0aywn45dh64pgxybyw2csfmf3gjh1cbg4jjflcgb8i488dz";
   };
-  home.file.".config/nvim/lua/user".source = ./astrovim;
-  home.file."${config.xdg.configHome}/oh-my-zsh".source = ./oh-my-zsh;
+  xdg.configFile."nvim/lua/user".source = ./astrovim;
+  xdg.configFile."oh-my-zsh".source = ./oh-my-zsh;
 
+  xdg.configFile."tmux".source = ./tmux;
+  home.file.".tmux/plugins/tpm".source = pkgs.fetchFromGitHub {
+    owner = "tmux-plugins";
+    repo = "tpm";
+    rev = "v3.0.0";
+    sha256 = "18q5j92fzmxwg8g9mzgdi5klfzcz0z01gr8q2y9hi4h4n864r059";
+  };
 
   # Git config using Home Manager modules
   programs.git = {
