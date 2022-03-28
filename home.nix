@@ -35,7 +35,13 @@
     rev = "8478bba8c0bc9b0aaefd39fa3254c595db2a464d";
     sha256 = "0x1vp0aywn45dh64pgxybyw2csfmf3gjh1cbg4jjflcgb8i488dz";
   };
-  xdg.configFile."nvim/lua/user".source = ./astrovim;
+  xdg.configFile."nvim/lua/user".source = pkgs.fetchFromGitHub {
+    owner = "pipex";
+    repo = "astrovim";
+    rev = "6111820104a6a2c248813c0fcc6ad1004bffb36c";
+    sha256 = "1c291cc3ilaw06kfc92ysdzw3vrqcb5hs2icgxcsxka1kr5i1hqp";
+  };
+
   xdg.configFile."oh-my-zsh".source = ./oh-my-zsh;
 
   home.file.".tmux.conf".source = ./tmux/tmux.conf;
