@@ -15,14 +15,12 @@
     pkgs.fzf
     pkgs.ripgrep
     pkgs.neovim
-    pkgs.procps
     pkgs.tmux
     pkgs.curl
     pkgs.nixpkgs-fmt
     pkgs.openssh
     pkgs.lazygit
     pkgs.stylua
-    pkgs.bash
   ];
 
   # Raw configuration files
