@@ -1,6 +1,6 @@
 # Comment
 
-if [ -z $SSH_CLIENT ]
+if [ -z "$SSH_CLIENT" ] && [ -z "$SWEET_HOME_VERSION" ]
 then
   PROMPT='%{$fg[magenta]%}[%c] %{$reset_color%}'
 else
