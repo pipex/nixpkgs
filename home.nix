@@ -14,7 +14,7 @@
     # pkgs is the set of all packages in the default home.nix implementation
     pkgs.gnumake
     pkgs.gcc
-    pkgs.nodejs-12_x
+    pkgs.nodejs
     pkgs.fzf
     pkgs.ripgrep
     pkgs.neovim
