@@ -25,6 +25,7 @@
     pkgs.lazygit
     pkgs.stylua
     pkgs.bash
+    pkgs.nodePackages.prettier
   ];
 
   # Install AstroVim
@@ -61,6 +62,11 @@
     userEmail = "1822826+pipex@users.noreply.github.com";
   };
 
+  programs.autojump = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -69,6 +75,7 @@
       update = "home-manager switch";
       vi = "nvim";
       lg = "lazygit";
+      j = "autojump";
     };
     localVariables = {
       TZ = "America/Santiago";
