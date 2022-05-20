@@ -75,7 +75,6 @@
       update = "home-manager switch";
       vi = "nvim";
       lg = "lazygit";
-      j = "autojump";
     };
     localVariables = {
       TZ = "America/Santiago";
