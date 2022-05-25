@@ -39,8 +39,8 @@
   xdg.configFile."nvim/lua/user".source = pkgs.fetchFromGitHub {
     owner = "pipex";
     repo = "astrovim";
-    rev = "d397a24005b7e42d4a02845748a929ae318e31eb";
-    sha256 = "0a6121gl2ns25xlhj6daln50bish1jvj5k9anb2g3z0xpifg48a4";
+    rev = "306a3448cc23b7f36ca4b8dee8d99363d9cfeb2e";
+    sha256 = "0nr9gpj5yz40zzx9a7dkri2j8mas723xrcwk4x49laqmh4y24maz";
   };
 
   xdg.configFile."oh-my-zsh".source = ./oh-my-zsh;
