@@ -33,14 +33,14 @@
   xdg.configFile."nvim".source = pkgs.fetchFromGitHub {
     owner = "AstroNvim";
     repo = "AstroNvim";
-    rev = "c7a66ebd0bebd8fb28303d660b872fc2fb1df114";
-    sha256 = "0ipryy9bcllszvs430ylcqqw7364ynnsw8nl4cfknjd2cvwihdlp";
+    rev = "v1.9.2";
+    sha256 = "00r5plpi1v67l582zx1ldx2b7lcp7xzg460vw9y1s4c95zv0p99i";
   };
   xdg.configFile."nvim/lua/user".source = pkgs.fetchFromGitHub {
     owner = "pipex";
     repo = "astrovim";
-    rev = "306a3448cc23b7f36ca4b8dee8d99363d9cfeb2e";
-    sha256 = "0nr9gpj5yz40zzx9a7dkri2j8mas723xrcwk4x49laqmh4y24maz";
+    rev = "4976fc5ca0af4c301c1141c0cfad8d95f7c36ab1";
+    sha256 = "0d50ip112c9jrbldh9k2h8jqzmsynz5l4ypcmgcyirs06qrla3yv";
   };
 
   xdg.configFile."oh-my-zsh".source = ./oh-my-zsh;
