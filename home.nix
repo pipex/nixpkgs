@@ -24,8 +24,8 @@
     pkgs.openssh
     pkgs.lazygit
     pkgs.stylua
-    pkgs.bash
-    pkgs.nodePackages.prettier
+#    pkgs.bash
+#    pkgs.nodePackages.prettier
   ];
 
   # Install AstroVim
