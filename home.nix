@@ -25,8 +25,9 @@
     pkgs.lazygit
     pkgs.stylua
     pkgs.mosh
-#    pkgs.bash
-#    pkgs.nodePackages.prettier
+    pkgs.shellcheck
+    #    pkgs.bash
+    #    pkgs.nodePackages.prettier
   ];
 
   # Install AstroVim
