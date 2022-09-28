@@ -24,6 +24,7 @@
     pkgs.openssh
     pkgs.lazygit
     pkgs.stylua
+    pkgs.mosh
 #    pkgs.bash
 #    pkgs.nodePackages.prettier
   ];
