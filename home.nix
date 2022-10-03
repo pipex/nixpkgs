@@ -36,9 +36,11 @@
   xdg.configFile."nvim".source = pkgs.fetchFromGitHub {
     owner = "AstroNvim";
     repo = "AstroNvim";
-    rev = "nightly";
+    # rev = "nightly";
+    rev = "c677663a111ea2e78f78743a133d63cf173aff42"; 
     # sha256 = "15zdx0nbg60xb4rs05bx5jywp9nyxagb9h94rawvnvhqpy05b8rw";
-    sha256 = "0833wgw58984fhks0zkaqn9wa7vwnw8n3sl6d57myqqpdbzyr39q";
+    # sha256 = "0833wgw58984fhks0zkaqn9wa7vwnw8n3sl6d57myqqpdbzyr39q";
+    sha256 = "1b6n4cvb7cq88bjcq901qw1w5h20lrfpfin6b9v0pz3hzbanw4fd";
   };
   xdg.configFile."nvim/lua/user".source = pkgs.fetchFromGitHub {
     owner = "pipex";
