@@ -14,7 +14,7 @@
     # pkgs is the set of all packages in the default home.nix implementation
     pkgs.gnumake
     pkgs.gcc
-    pkgs.nodejs
+    pkgs.nodejs-16_x
     pkgs.fzf
     pkgs.ripgrep
     pkgs.neovim
@@ -24,10 +24,11 @@
     pkgs.openssh
     pkgs.lazygit
     pkgs.stylua
-    pkgs.mosh
     pkgs.shellcheck
-    #    pkgs.bash
-    #    pkgs.nodePackages.prettier
+    pkgs.bash # for tmux plugins
+    pkgs.nodePackages.prettier
+    pkgs.dbus
+    pkgs.docker-client
   ];
 
   # Install AstroVim
@@ -35,15 +36,19 @@
   xdg.configFile."nvim".source = pkgs.fetchFromGitHub {
     owner = "AstroNvim";
     repo = "AstroNvim";
-    rev = "v1.9.2";
-    sha256 = "00r5plpi1v67l582zx1ldx2b7lcp7xzg460vw9y1s4c95zv0p99i";
+    rev = "nightly";
+    # sha256 = "15zdx0nbg60xb4rs05bx5jywp9nyxagb9h94rawvnvhqpy05b8rw";
+    sha256 = "0833wgw58984fhks0zkaqn9wa7vwnw8n3sl6d57myqqpdbzyr39q";
   };
   xdg.configFile."nvim/lua/user".source = pkgs.fetchFromGitHub {
     owner = "pipex";
     repo = "astrovim";
-    rev = "4976fc5ca0af4c301c1141c0cfad8d95f7c36ab1";
-    sha256 = "0d50ip112c9jrbldh9k2h8jqzmsynz5l4ypcmgcyirs06qrla3yv";
+    # rev = "d28f19e8a2420babeb033b71373e5e5d0d9179a5";
+    rev = "736219d6caffde63aea44ee9802e28edbbec75eb";
+    sha256 = "1awq23rkfywi55hlvjl4srll6zans80rj4z58839x7ng27x5vrbf";
+    # sha256 = "0d50ip112c9jrbldh9k2h8jqzmsynz5l4ypcmgcyirs06qrla3yv";
   };
+  # xdg.configFile."nvim/lua/user".source = ./astrovim;
 
   xdg.configFile."oh-my-zsh".source = ./oh-my-zsh;
 
@@ -77,6 +82,9 @@
       update = "home-manager switch";
       vi = "nvim";
       lg = "lazygit";
+      balena = "sudo -E docker";
+      shutdown = "dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 'org.freedesktop.login1.Manager.PowerOff' boolean:true";
+      reboot = "dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 'org.freedesktop.login1.Manager.Reboot' boolean:true";
     };
     localVariables = {
       TZ = "America/Santiago";
