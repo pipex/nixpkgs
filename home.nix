@@ -26,6 +26,7 @@
     pkgs.cargo
     pkgs.rustc
     pkgs.nixpkgs-fmt
+    pkgs.python3
   ];
 
   # Install AstroVim
@@ -85,6 +86,11 @@
       size = 10000;
       path = "${config.xdg.dataHome}/zsh/history";
     };
+    initExtra = ''
+      export NVM_DIR="$HOME/.nvm"
+      [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+      [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+    '';
 
     oh-my-zsh = {
       enable = true;
