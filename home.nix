@@ -3,10 +3,10 @@
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  home.username = "me";
-  home.homeDirectory = "/home/me";
+  home.username = "flalanne";
+  home.homeDirectory = "/Users/flalanne";
   home.sessionVariables = {
-    SWEET_HOME_SHELL = "zsh";
+    # SWEET_HOME_SHELL = "zsh";
   };
 
   # Packages to install
@@ -14,21 +14,18 @@
     # pkgs is the set of all packages in the default home.nix implementation
     pkgs.gnumake
     pkgs.gcc
-    pkgs.nodejs-16_x
+    # pkgs.nodejs-16_x
     pkgs.fzf
     pkgs.ripgrep
     pkgs.neovim
     pkgs.tmux
     pkgs.curl
-    pkgs.nixpkgs-fmt
     pkgs.openssh
     pkgs.lazygit
-    pkgs.stylua
-    pkgs.shellcheck
-    pkgs.bash # for tmux plugins
-    pkgs.nodePackages.prettier
     pkgs.dbus
-    pkgs.docker-client
+    pkgs.cargo
+    pkgs.rustc
+    pkgs.nixpkgs-fmt
   ];
 
   # Install AstroVim
@@ -36,21 +33,16 @@
   xdg.configFile."nvim".source = pkgs.fetchFromGitHub {
     owner = "AstroNvim";
     repo = "AstroNvim";
-    # rev = "nightly";
-    rev = "c677663a111ea2e78f78743a133d63cf173aff42"; 
-    # sha256 = "15zdx0nbg60xb4rs05bx5jywp9nyxagb9h94rawvnvhqpy05b8rw";
-    # sha256 = "0833wgw58984fhks0zkaqn9wa7vwnw8n3sl6d57myqqpdbzyr39q";
-    sha256 = "1b6n4cvb7cq88bjcq901qw1w5h20lrfpfin6b9v0pz3hzbanw4fd";
+    rev = "v2.0.0";
+    sha256 = "1ps73ay6pl5hrkq9r3gavgs4vk9cgazqa2rqsyq8yhb8q0wjba8q";
   };
-  xdg.configFile."nvim/lua/user".source = pkgs.fetchFromGitHub {
-    owner = "pipex";
-    repo = "astrovim";
-    # rev = "d28f19e8a2420babeb033b71373e5e5d0d9179a5";
-    rev = "736219d6caffde63aea44ee9802e28edbbec75eb";
-    sha256 = "1awq23rkfywi55hlvjl4srll6zans80rj4z58839x7ng27x5vrbf";
-    # sha256 = "0d50ip112c9jrbldh9k2h8jqzmsynz5l4ypcmgcyirs06qrla3yv";
-  };
-  # xdg.configFile."nvim/lua/user".source = ./astrovim;
+  # xdg.configFile."nvim/lua/user".source = pkgs.fetchFromGitHub {
+  #   owner = "pipex";
+  #   repo = "astrovim";
+  #   rev = "736219d6caffde63aea44ee9802e28edbbec75eb";
+  #   sha256 = "1awq23rkfywi55hlvjl4srll6zans80rj4z58839x7ng27x5vrbf";
+  # };
+  xdg.configFile."nvim/lua/user".source = ./astronvim;
 
   xdg.configFile."oh-my-zsh".source = ./oh-my-zsh;
 
@@ -84,9 +76,6 @@
       update = "home-manager switch";
       vi = "nvim";
       lg = "lazygit";
-      balena = "sudo -E docker";
-      shutdown = "dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 'org.freedesktop.login1.Manager.PowerOff' boolean:true";
-      reboot = "dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 'org.freedesktop.login1.Manager.Reboot' boolean:true";
     };
     localVariables = {
       TZ = "America/Santiago";
@@ -114,5 +103,8 @@
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "21.05";
+  home.stateVersion = "22.05";
+
+  # Let Home Manager install and manage itself.
+  programs.home-manager.enable = true;
 }
