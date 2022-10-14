@@ -57,6 +57,9 @@
     sha256 = "18q5j92fzmxwg8g9mzgdi5klfzcz0z01gr8q2y9hi4h4n864r059";
   };
 
+  # Prettier
+  home.file.".prettierrc".source = ./prettierrc;
+
   # Git config using Home Manager modules
   programs.git = {
     enable = true;
