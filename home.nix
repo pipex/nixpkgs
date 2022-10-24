@@ -14,7 +14,6 @@
     # pkgs is the set of all packages in the default home.nix implementation
     pkgs.gnumake
     pkgs.gcc
-    # pkgs.nodejs-16_x
     pkgs.fzf
     pkgs.ripgrep
     pkgs.neovim
@@ -22,11 +21,14 @@
     pkgs.curl
     pkgs.openssh
     pkgs.lazygit
-    pkgs.dbus
     pkgs.cargo
     pkgs.rustc
     pkgs.nixpkgs-fmt
-    pkgs.python3
+    pkgs.jq
+    pkgs.mosh
+    pkgs.bash
+    pkgs.libiconv # needed for rnix
+    pkgs.pkg-config
   ];
 
   # Install AstroVim
@@ -34,8 +36,8 @@
   xdg.configFile."nvim".source = pkgs.fetchFromGitHub {
     owner = "AstroNvim";
     repo = "AstroNvim";
-    rev = "v2.2.2";
-    sha256 = "19iybaa2vadz5nqbpx9h882fwfd5scbfnd9ls6z5jmhwnsh2m77k";
+    rev = "v2.4.2";
+    sha256 = "09550nxi2gxkkbfyr6p6lilpczqw5qk8pvqdg3fmb4l5ja2vs3dg";
   };
   # xdg.configFile."nvim/lua/user".source = pkgs.fetchFromGitHub {
   #   owner = "pipex";
@@ -65,6 +67,9 @@
     enable = true;
     userName = "Felipe Lalanne";
     userEmail = "1822826+pipex@users.noreply.github.com";
+    aliases = {
+      lg = "log --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --all";
+    };
   };
 
   programs.autojump = {
@@ -83,7 +88,8 @@
     };
     localVariables = {
       TZ = "America/Santiago";
-      TERM = "screen-256color";
+      EDITOR = "nvim";
+      # TERM = "screen-256color";
     };
     history = {
       size = 10000;
@@ -101,6 +107,19 @@
       custom = "${config.xdg.configHome}/oh-my-zsh";
       theme = "pipex";
     };
+
+    plugins = [
+      {
+        name = "zsh-nix-shell";
+        file = "nix-shell.plugin.zsh";
+        src = pkgs.fetchFromGitHub {
+          owner = "chisui";
+          repo = "zsh-nix-shell";
+          rev = "v0.5.0";
+          sha256 = "0za4aiwwrlawnia4f29msk822rj9bgcygw6a8a6iikiwzjjz0g91";
+        };
+      }
+    ];
   };
 
 
