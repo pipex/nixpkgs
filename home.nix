@@ -67,6 +67,11 @@
     enable = true;
     userName = "Felipe Lalanne";
     userEmail = "1822826+pipex@users.noreply.github.com";
+    extraConfig = {
+      init = {
+        defaultBranch = "main";
+      };
+    };
     aliases = {
       lg = "log --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --all";
     };
