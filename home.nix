@@ -74,6 +74,9 @@
       push = {
         autoSetupRemote = true;
       };
+      pull = {
+        rebase = true;
+      };
     };
     aliases = {
       lg = "log --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --all";
@@ -111,7 +114,7 @@
       cs() {
         folder=$1
         [ "$folder" = "" ] && folder="balena-supervisor"
-        git clone git@github.com:balena-os/balena-supervisor.git $folder && cd $folder && nix-shell -p dbus pkg-config --run "npm ci"
+        git clone git@github.com:balena-os/balena-supervisor.git $folder && cd $folder && git checkout -b $folder && nix-shell -p dbus pkg-config --run "npm ci"
       }
     '';
 
