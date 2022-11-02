@@ -107,6 +107,12 @@
       export NVM_DIR="$HOME/.nvm"
       [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
       [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+      cs() {
+        folder=$1
+        [ "$folder" = "" ] && folder="balena-supervisor"
+        git clone git@github.com:balena-os/balena-supervisor.git $folder && cd $folder && nix-shell -p dbus pkg-config --run "npm ci"
+      }
     '';
 
     oh-my-zsh = {
