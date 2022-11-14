@@ -21,14 +21,13 @@
     pkgs.curl
     pkgs.openssh
     pkgs.lazygit
-    pkgs.cargo
-    pkgs.rustc
+    pkgs.rustup
     pkgs.nixpkgs-fmt
+    pkgs.rust-analyzer
     pkgs.jq
     pkgs.mosh
     pkgs.bash
-    pkgs.libiconv # needed for rnix
-    pkgs.pkg-config
+    pkgs.reattach-to-user-namespace
   ];
 
   # Install AstroVim
@@ -36,8 +35,8 @@
   xdg.configFile."nvim".source = pkgs.fetchFromGitHub {
     owner = "AstroNvim";
     repo = "AstroNvim";
-    rev = "v2.4.2";
-    sha256 = "09550nxi2gxkkbfyr6p6lilpczqw5qk8pvqdg3fmb4l5ja2vs3dg";
+    rev = "v2.6.5";
+    sha256 = "0s094ssrkmfraym3bc77ahp3wym27vhjnda1mqffg9wn349kz0wl";
   };
   # xdg.configFile."nvim/lua/user".source = pkgs.fetchFromGitHub {
   #   owner = "pipex";
@@ -76,6 +75,9 @@
       };
       pull = {
         rebase = true;
+      };
+      core = {
+        editor = "nvim";
       };
     };
     aliases = {
