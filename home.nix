@@ -28,6 +28,12 @@
     pkgs.mosh
     pkgs.bash
     pkgs.reattach-to-user-namespace
+    pkgs.libiconv
+    pkgs.colordiff
+    (pkgs.callPackage ./balena-cli.nix {
+      version = "14.5.11";
+      hash = "1mx4i837q4fs6fpcrzkcfw5ypk9pxf7xjdbhy13hi25ars8absh9";
+    })
   ];
 
   # Install AstroVim
@@ -110,13 +116,16 @@
     };
     initExtra = ''
       export NVM_DIR="$HOME/.nvm"
-      [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-      [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+      [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+      [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
       cs() {
         folder=$1
         [ "$folder" = "" ] && folder="balena-supervisor"
-        git clone git@github.com:balena-os/balena-supervisor.git $folder && cd $folder && git checkout -b $folder && nix-shell -p dbus pkg-config --run "npm ci"
+        git clone git@github.com:balena-os/balena-supervisor.git $folder && \
+          cd $folder && \
+          (git checkout $folder || git checkout -b $folder) && \
+          nix-shell -p dbus pkg-config --run "npm ci"
       }
     '';
 
