@@ -9,6 +9,9 @@
     SWEET_HOME_SHELL = "zsh";
   };
 
+  # There is a bug with nixpkgs that is failing on linux
+  manual.manpages.enable = false;
+
   # Packages to install
   home.packages = [
     # pkgs is the set of all packages in the default home.nix implementation
