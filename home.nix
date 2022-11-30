@@ -34,8 +34,9 @@
     pkgs.dbus
     pkgs.docker-client
     (pkgs.callPackage ./balena-cli.nix {
-      version = "14.5.11";
-      hash = "1mx4i837q4fs6fpcrzkcfw5ypk9pxf7xjdbhy13hi25ars8absh9";
+      version = "14.5.12";
+      os = "linux";
+      hash = "1rqyk9pkwpqkhv4v33fwja4dpcync0sajimpmcfr8cglrm0z4gl2";
     })
   ];
 
