@@ -27,6 +27,7 @@
     pkgs.jq
     pkgs.mosh
     pkgs.bash
+    pkgs.shellcheck
     pkgs.reattach-to-user-namespace
     pkgs.libiconv
     pkgs.colordiff
