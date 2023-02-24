@@ -25,6 +25,7 @@
     pkgs.nixpkgs-fmt
     pkgs.rust-analyzer
     pkgs.jq
+    pkgs.yq
     pkgs.mosh
     pkgs.bash
     pkgs.shellcheck
@@ -32,8 +33,8 @@
     pkgs.libiconv
     pkgs.colordiff
     (pkgs.callPackage ./balena-cli.nix {
-      version = "14.5.11";
-      hash = "1mx4i837q4fs6fpcrzkcfw5ypk9pxf7xjdbhy13hi25ars8absh9";
+      version = "15.0.3";
+      hash = "11dnilgj6xfq20420nmf3dy9zry6sy7gahkvdx1fa701d89di3a3";
     })
   ];
 
