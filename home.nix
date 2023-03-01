@@ -123,10 +123,11 @@
 
       cs() {
         folder=$1
-        [ "$folder" = "" ] && folder="balena-supervisor"
+        branch=$1
+        [ "$folder" = "" ] && folder="balena-supervisor"; branch=master
         git clone git@github.com:balena-os/balena-supervisor.git $folder && \
           cd $folder && \
-          (git checkout $folder || git checkout -b $folder) && \
+          (git checkout $branch || git checkout -b $branch) && \
           nix-shell -p dbus pkg-config --run "npm ci"
       }
     '';
