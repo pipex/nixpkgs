@@ -124,7 +124,10 @@
       cs() {
         folder=$1
         branch=$1
-        [ "$folder" = "" ] && folder="balena-supervisor"; branch=master
+        if [ "$folder" = "" ]; then
+          folder="balena-supervisor"
+          branch=master
+        fi
         git clone git@github.com:balena-os/balena-supervisor.git $folder && \
           cd $folder && \
           (git checkout $branch || git checkout -b $branch) && \
