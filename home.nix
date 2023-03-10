@@ -32,6 +32,7 @@
     pkgs.reattach-to-user-namespace
     pkgs.libiconv
     pkgs.colordiff
+    pkgs.exercism
     (pkgs.callPackage ./balena-cli.nix {
       version = "15.0.3";
       hash = "11dnilgj6xfq20420nmf3dy9zry6sy7gahkvdx1fa701d89di3a3";
@@ -94,6 +95,11 @@
   };
 
   programs.autojump = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.direnv = {
     enable = true;
     enableZshIntegration = true;
   };
