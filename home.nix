@@ -32,10 +32,9 @@
     pkgs.reattach-to-user-namespace
     pkgs.libiconv
     pkgs.colordiff
-    pkgs.exercism
     (pkgs.callPackage ./balena-cli.nix {
-      version = "15.0.3";
-      hash = "11dnilgj6xfq20420nmf3dy9zry6sy7gahkvdx1fa701d89di3a3";
+      version = "15.0.6";
+      hash = "1kcdian8plh9bvwzx36v4261jdcmikx1j2lyligqa33ahnhd49p0";
     })
   ];
 
@@ -44,8 +43,8 @@
   xdg.configFile."nvim".source = pkgs.fetchFromGitHub {
     owner = "AstroNvim";
     repo = "AstroNvim";
-    rev = "v2.11.8";
-    sha256 = "0cknamcvw7il7fbndaj9dc6g66fj32aby87iqx8akr6nl83sp4ky";
+    rev = "v3.1.1";
+    sha256 = "1k6p14j57zx02vyw2z1yvvdk1bc74wsabq07dm5bqs4rwzx68pbz";
   };
   # xdg.configFile."nvim/lua/user".source = pkgs.fetchFromGitHub {
   #   owner = "pipex";
