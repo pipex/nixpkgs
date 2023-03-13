@@ -9,6 +9,8 @@
     # SWEET_HOME_SHELL = "zsh";
   };
 
+  fonts.fontconfig.enable = true;
+
   # Packages to install
   home.packages = [
     # pkgs is the set of all packages in the default home.nix implementation
@@ -36,6 +38,7 @@
       version = "15.0.6";
       hash = "1kcdian8plh9bvwzx36v4261jdcmikx1j2lyligqa33ahnhd49p0";
     })
+    (pkgs.nerdfonts.override { fonts = [ "SourceCodePro" ]; })
   ];
 
   # Install AstroVim
