@@ -5,9 +5,6 @@
   # paths it should manage.
   home.username = "flalanne";
   home.homeDirectory = "/Users/flalanne";
-  home.sessionVariables = {
-    # SWEET_HOME_SHELL = "zsh";
-  };
 
   fonts.fontconfig.enable = true;
 
@@ -35,9 +32,10 @@
     pkgs.libiconv
     pkgs.colordiff
     (pkgs.callPackage ./balena-cli.nix {
-      version = "15.0.6";
-      hash = "1kcdian8plh9bvwzx36v4261jdcmikx1j2lyligqa33ahnhd49p0";
+      version = "15.1.0";
+      hash = "0ad2w1yk2dhj0jd1lmak2i5zrpkbspf9nfm4q10vbah8ajw1g49q";
     })
+    (pkgs.callPackage ./shell-gpt.nix { })
     (pkgs.nerdfonts.override { fonts = [ "SourceCodePro" ]; })
   ];
 
@@ -173,7 +171,7 @@
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "22.05";
+  home.stateVersion = "23.05";
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
