@@ -1,10 +1,15 @@
 # Comment
 #
 my_git_prompt_info() {
+	color="%{$fg[green]%}"
+	if [[ $(git diff --stat) != '' ]]; then
+		color="%{$fg[yellow]%}"
+	fi
+
 	if [[ -z $(git_current_branch) ]]; then
 		echo ""
 	else
-		echo " $(git_current_branch)"
+		echo "$color  $(git_current_branch)%{$fg[magenta]%}"
 	fi
 }
 
