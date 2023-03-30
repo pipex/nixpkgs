@@ -37,6 +37,7 @@
     })
     (pkgs.callPackage ./shell-gpt.nix { })
     (pkgs.nerdfonts.override { fonts = [ "SourceCodePro" ]; })
+    pkgs.gh
   ];
 
   # Install AstroVim
