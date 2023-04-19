@@ -38,6 +38,7 @@
     (pkgs.callPackage ./shell-gpt.nix { })
     (pkgs.nerdfonts.override { fonts = [ "SourceCodePro" ]; })
     pkgs.gh
+    pkgs.go
   ];
 
   # Install AstroVim
@@ -45,8 +46,8 @@
   xdg.configFile."nvim".source = pkgs.fetchFromGitHub {
     owner = "AstroNvim";
     repo = "AstroNvim";
-    rev = "v3.1.1";
-    sha256 = "1k6p14j57zx02vyw2z1yvvdk1bc74wsabq07dm5bqs4rwzx68pbz";
+    rev = "v3.10.3";
+    sha256 = "1ba0xjjcf56qvappc6mlxw9i9kz5y706h4gkzhq6qb9vvq3s4m80";
   };
   # xdg.configFile."nvim/lua/user".source = pkgs.fetchFromGitHub {
   #   owner = "pipex";
