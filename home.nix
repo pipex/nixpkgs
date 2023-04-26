@@ -70,7 +70,7 @@
   };
 
   # Prettier
-  home.file.".prettierrc".source = ./prettierrc;
+  home.file.".prettierrc.json".source = ./prettierrc.json;
 
   # Git config using Home Manager modules
   programs.git = {
