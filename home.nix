@@ -39,6 +39,9 @@
     (pkgs.nerdfonts.override { fonts = [ "SourceCodePro" ]; })
     pkgs.gh
     pkgs.go
+    pkgs.tree-sitter
+    pkgs.bottom
+    pkgs.gdu
   ];
 
   # Install AstroVim
