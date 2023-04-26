@@ -24,7 +24,7 @@
     pkgs.nixpkgs-fmt
     pkgs.rust-analyzer
     pkgs.jq
-    pkgs.yq
+    pkgs.yq-go
     pkgs.mosh
     pkgs.bash
     pkgs.shellcheck
@@ -46,8 +46,8 @@
   xdg.configFile."nvim".source = pkgs.fetchFromGitHub {
     owner = "AstroNvim";
     repo = "AstroNvim";
-    rev = "v3.10.3";
-    sha256 = "1ba0xjjcf56qvappc6mlxw9i9kz5y706h4gkzhq6qb9vvq3s4m80";
+    rev = "v3.11.3";
+    sha256 = "0n9mn2fhid74hwxcym5x2gk3mkfmr000vjpf39n48nzafb7rdv5m";
   };
   # xdg.configFile."nvim/lua/user".source = pkgs.fetchFromGitHub {
   #   owner = "pipex";
