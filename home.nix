@@ -132,17 +132,33 @@
       [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
       [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-      cs() {
-        folder=$1
-        branch=$1
-        if [ "$folder" = "" ]; then
-          folder="balena-supervisor"
-          branch=master
+      clone() {
+        repo="$GIT_REPO"
+        folder="$1"
+        branch="$1"
+
+        if [ "$#" -ge 2 ]; then
+          repo=$1
+          folder=$2
+          branch=$2
         fi
-        git clone git@github.com:balena-os/balena-supervisor.git $folder && \
+
+        [ "$repo" = "" ] && echo "No repository provided" && return 1
+
+        if [ "$folder" = "" ]; then
+          branch="$(git ls-remote --symref "git@github.com:$repo.git" HEAD | awk '/^ref:/ {sub(/refs\/heads\//, "", $2); print $2}')"
+          folder="$(basename "$repo")-$branch"
+        fi
+
+        git clone "git@github.com:$repo.git" $folder && \
           cd $folder && \
-          (git checkout $branch || git checkout -b $branch) && \
-          nix-shell -p dbus pkg-config --run "npm ci"
+          (git checkout $branch || git checkout -b $branch)
+
+        if [ -f "package-lock.json" ]; then
+          npm ci
+        elif [ -f "package.json" ]; then
+          npm i
+        fi
       }
     '';
 
