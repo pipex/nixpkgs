@@ -132,22 +132,27 @@
       [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
       [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-      clone() {
+      cb() {
+        if [ -d .git ]; then
+          ([ "$GIT_HOME" = "" ] || [ -d "$GIT_HOME" ]) && echo "Already in a git repository and not GIT_HOME defined" && return 1
+          cd $GIT_HOME
+        fi
+         
         repo="$GIT_REPO"
         folder="$1"
         branch="$1"
-
-        if [ "$#" -ge 2 ]; then
-          repo=$1
-          folder=$2
-          branch=$2
-        fi
-
-        [ "$repo" = "" ] && echo "No repository provided" && return 1
+        
+        [ "$repo" = "" ] && echo "No GIT_REPO environment variable" && return 1
 
         if [ "$folder" = "" ]; then
           branch="$(git ls-remote --symref "git@github.com:$repo.git" HEAD | awk '/^ref:/ {sub(/refs\/heads\//, "", $2); print $2}')"
-          folder="$(basename "$repo")-$branch"
+          folder="$branch"
+        fi
+
+        if [ -d "$folder" ]; then
+          cd "$folder"
+          [ ! -d ".git" ] && echo "Folder $folder exists but is not a git repository" && return 1
+          return 0
         fi
 
         git clone "git@github.com:$repo.git" $folder && \
