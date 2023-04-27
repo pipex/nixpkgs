@@ -134,7 +134,7 @@
 
       cb() {
         if [ -d .git ]; then
-          ([ "$GIT_HOME" = "" ] || [ -d "$GIT_HOME" ]) && echo "Already in a git repository and not GIT_HOME defined" && return 1
+          ([ "$GIT_HOME" = "" ] || [ ! -d "$GIT_HOME" ]) && echo "Already in a git repository and not GIT_HOME defined" && return 1
           cd $GIT_HOME
         fi
          
