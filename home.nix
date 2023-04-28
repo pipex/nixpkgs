@@ -75,6 +75,14 @@
   # Prettier
   home.file.".prettierrc.json".source = ./prettierrc.json;
 
+  # Global shell aliases
+  home.shellAliases = {
+    ls = "ls --color=auto";
+    ll = "ls -l";
+    vi = "nvim";
+    lg = "lazygit";
+  };
+
   # Git config using Home Manager modules
   programs.git = {
     enable = true;
@@ -112,12 +120,6 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    shellAliases = {
-      ll = "ls -l";
-      update = "home-manager switch";
-      vi = "nvim";
-      lg = "lazygit";
-    };
     localVariables = {
       TZ = "America/Santiago";
       EDITOR = "nvim";
