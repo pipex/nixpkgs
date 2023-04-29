@@ -39,7 +39,6 @@
     (pkgs.nerdfonts.override { fonts = [ "SourceCodePro" ]; })
     pkgs.gh
     pkgs.go
-    pkgs.tree-sitter
     pkgs.bottom
     pkgs.gdu
   ];
@@ -136,8 +135,8 @@
 
       cb() {
         if [ -d .git ]; then
-          ([ "$GIT_HOME" = "" ] || [ ! -d "$GIT_HOME" ]) && echo "Already in a git repository and not GIT_HOME defined" && return 1
-          cd $GIT_HOME
+          ([ "$GIT_REPO_HOME" = "" ] || [ ! -d "$GIT_REPO_HOME" ]) && echo "Already in a git repository and not GIT_REPO_HOME defined" && return 1
+          cd $GIT_REPO_HOME
         fi
          
         repo="$GIT_REPO"
