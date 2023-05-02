@@ -41,6 +41,10 @@
     pkgs.go
     pkgs.bottom
     pkgs.gdu
+    pkgs.deno
+    pkgs.alejandra
+    pkgs.deadnix
+    pkgs.statix
   ];
 
   # Install AstroVim
@@ -48,8 +52,8 @@
   xdg.configFile."nvim".source = pkgs.fetchFromGitHub {
     owner = "AstroNvim";
     repo = "AstroNvim";
-    rev = "v3.11.3";
-    sha256 = "0n9mn2fhid74hwxcym5x2gk3mkfmr000vjpf39n48nzafb7rdv5m";
+    rev = "v3.13.2";
+    sha256 = "0vh3akwnx7ybpk53v4y93vkrjv5z6bv9azy6km3lv1hq272dsvd7";
   };
   # xdg.configFile."nvim/lua/user".source = pkgs.fetchFromGitHub {
   #   owner = "pipex";
