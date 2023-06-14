@@ -22,7 +22,6 @@
     pkgs.lazygit
     pkgs.rustup
     pkgs.nixpkgs-fmt
-    pkgs.rust-analyzer
     pkgs.jq
     pkgs.yq-go
     pkgs.mosh
@@ -32,8 +31,8 @@
     pkgs.libiconv
     pkgs.colordiff
     (pkgs.callPackage ./balena-cli.nix {
-      version = "15.1.0";
-      hash = "0ad2w1yk2dhj0jd1lmak2i5zrpkbspf9nfm4q10vbah8ajw1g49q";
+      version = "16.5.2";
+      hash = "00g2ia67wmfkczzlxa7mpr1l3cg195rdsazg8ada49fghgpd5gjk";
     })
     (pkgs.callPackage ./shell-gpt.nix { })
     (pkgs.nerdfonts.override { fonts = [ "SourceCodePro" ]; })
@@ -52,8 +51,8 @@
   xdg.configFile."nvim".source = pkgs.fetchFromGitHub {
     owner = "AstroNvim";
     repo = "AstroNvim";
-    rev = "v3.13.2";
-    sha256 = "0vh3akwnx7ybpk53v4y93vkrjv5z6bv9azy6km3lv1hq272dsvd7";
+    rev = "v3.22.1";
+    sha256 = "0ksi770gmpnvvs1s38cdl317fjwn8z8hicrsvw0wm5rw7qlfzmzc";
   };
   # xdg.configFile."nvim/lua/user".source = pkgs.fetchFromGitHub {
   #   owner = "pipex";
