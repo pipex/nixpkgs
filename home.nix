@@ -31,8 +31,8 @@
     pkgs.libiconv
     pkgs.colordiff
     (pkgs.callPackage ./balena-cli.nix {
-      version = "16.5.2";
-      hash = "00g2ia67wmfkczzlxa7mpr1l3cg195rdsazg8ada49fghgpd5gjk";
+      version = "16.6.3";
+      hash = "18bb4w0qfiz44kk5rmaa1ha434xrc2d3w4ch5bh0zbf28bqfnvkc";
     })
     (pkgs.callPackage ./shell-gpt.nix { })
     (pkgs.nerdfonts.override { fonts = [ "SourceCodePro" ]; })
@@ -44,6 +44,7 @@
     pkgs.alejandra
     pkgs.deadnix
     pkgs.statix
+    pkgs.luarocks
   ];
 
   # Install AstroVim
@@ -51,8 +52,8 @@
   xdg.configFile."nvim".source = pkgs.fetchFromGitHub {
     owner = "AstroNvim";
     repo = "AstroNvim";
-    rev = "v3.22.1";
-    sha256 = "0ksi770gmpnvvs1s38cdl317fjwn8z8hicrsvw0wm5rw7qlfzmzc";
+    rev = "v3.30.4";
+    sha256 = "1x03q8y8mznv50w882wr0pcgm2i26hkkg1721qzcff54qswv7vv0";
   };
   # xdg.configFile."nvim/lua/user".source = pkgs.fetchFromGitHub {
   #   owner = "pipex";
@@ -176,6 +177,9 @@
       plugins = [ "git" ];
       custom = "${config.xdg.configHome}/oh-my-zsh";
       theme = "pipex";
+      extraConfig = ''
+        DISABLE_MAGIC_FUNCTIONS="true";
+      '';
     };
 
     plugins = [
