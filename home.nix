@@ -160,7 +160,7 @@
           return 0
         fi
 
-        git clone "git@github.com:$repo.git" $folder && \
+        git clone --recurse-submodules "git@github.com:$repo.git" $folder && \
           cd $folder && \
           (git checkout $branch || git checkout -b $branch)
 
