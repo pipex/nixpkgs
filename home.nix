@@ -40,7 +40,6 @@
     pkgs.go
     pkgs.bottom
     pkgs.gdu
-    pkgs.deno
     pkgs.alejandra
     pkgs.deadnix
     pkgs.statix
@@ -52,8 +51,8 @@
   xdg.configFile."nvim".source = pkgs.fetchFromGitHub {
     owner = "AstroNvim";
     repo = "AstroNvim";
-    rev = "v3.30.4";
-    sha256 = "1x03q8y8mznv50w882wr0pcgm2i26hkkg1721qzcff54qswv7vv0";
+    rev = "v3.33.1";
+    sha256 = "1xf57zdlnp8a46p28vcxih5jpwhx87v7v1pavymx1cfrjzsks5lk";
   };
   # xdg.configFile."nvim/lua/user".source = pkgs.fetchFromGitHub {
   #   owner = "pipex";
