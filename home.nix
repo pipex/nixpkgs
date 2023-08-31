@@ -51,8 +51,8 @@
   xdg.configFile."nvim".source = pkgs.fetchFromGitHub {
     owner = "AstroNvim";
     repo = "AstroNvim";
-    rev = "v3.33.1";
-    sha256 = "1xf57zdlnp8a46p28vcxih5jpwhx87v7v1pavymx1cfrjzsks5lk";
+    rev = "v3.36.0";
+    sha256 = "0k1sw72x1r0vbsggpncykdf1x4qmm8h4ghdipkc7km14x4s5c9xv";
   };
   # xdg.configFile."nvim/lua/user".source = pkgs.fetchFromGitHub {
   #   owner = "pipex";
@@ -102,6 +102,7 @@
       };
       core = {
         editor = "nvim";
+        pager = "cat";
       };
     };
     aliases = {
@@ -135,6 +136,8 @@
       export NVM_DIR="$HOME/.nvm"
       [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
       [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+      export BUILDKIT_PROGRESS=plain
 
       cb() {
         if [ -d .git ]; then
