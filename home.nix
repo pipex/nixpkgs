@@ -30,10 +30,7 @@
     pkgs.reattach-to-user-namespace
     pkgs.libiconv
     pkgs.colordiff
-    (pkgs.callPackage ./balena-cli.nix {
-      version = "16.6.3";
-      hash = "18bb4w0qfiz44kk5rmaa1ha434xrc2d3w4ch5bh0zbf28bqfnvkc";
-    })
+    pkgs.balena-cli
     (pkgs.callPackage ./shell-gpt.nix { })
     (pkgs.nerdfonts.override { fonts = [ "SourceCodePro" ]; })
     pkgs.gh
