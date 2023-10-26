@@ -48,8 +48,8 @@
   xdg.configFile."nvim".source = pkgs.fetchFromGitHub {
     owner = "AstroNvim";
     repo = "AstroNvim";
-    rev = "v3.36.0";
-    sha256 = "0k1sw72x1r0vbsggpncykdf1x4qmm8h4ghdipkc7km14x4s5c9xv";
+    rev = "v3.37.7";
+    sha256 = "0ma5hs0xhg6s6fd9d9prig64nd3l68bmnjnfxr4q50was27h5z84";
   };
   # xdg.configFile."nvim/lua/user".source = pkgs.fetchFromGitHub {
   #   owner = "pipex";
