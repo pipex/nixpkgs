@@ -31,8 +31,8 @@
     pkgs.libiconv
     pkgs.colordiff
     (pkgs.callPackage ./balena-cli.nix {
-      hash = "1ajp1yib0cy3lzfsic5hdfdm56529rm37pwfck3892b2807am6gd"; 
-      version = "17.4.0";
+      hash = "0m1vsww9swbl5raby00vzgb822pr8wbfsf696l609c3jdyv5yy3b"; 
+      version = "18.1.5";
     })
     (pkgs.callPackage ./shell-gpt.nix { })
     (pkgs.nerdfonts.override { fonts = [ "SourceCodePro" ]; })
@@ -48,19 +48,19 @@
 
   # Install AstroVim
   xdg.configFile."nvim".recursive = true;
-  xdg.configFile."nvim".source = pkgs.fetchFromGitHub {
-    owner = "AstroNvim";
-    repo = "AstroNvim";
-    rev = "v3.37.12";
-    sha256 = "0yahrxpy4sk2fjin1vmyy91yxywmmfz13zxrsd8g79hw5frn4bbh";
-  };
+  # xdg.configFile."nvim".source = pkgs.fetchFromGitHub {
+  #   owner = "AstroNvim";
+  #   repo = "AstroNvim";
+  #   rev = "v3.42.0";
+  #   sha256 = "1apfd6253wspqwyprvv7ngv8w25b4a8p2wf19d8p0x4kg6pixz5p";
+  # };
   # xdg.configFile."nvim/lua/user".source = pkgs.fetchFromGitHub {
   #   owner = "pipex";
   #   repo = "astrovim";
   #   rev = "736219d6caffde63aea44ee9802e28edbbec75eb";
   #   sha256 = "1awq23rkfywi55hlvjl4srll6zans80rj4z58839x7ng27x5vrbf";
   # };
-  xdg.configFile."nvim/lua/user".source = ./astronvim;
+  xdg.configFile."nvim".source = ./astronvim;
 
   xdg.configFile."oh-my-zsh".source = ./oh-my-zsh;
 
@@ -207,7 +207,7 @@
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "23.05";
+  home.stateVersion = "23.11";
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

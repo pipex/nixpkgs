@@ -1,7 +1,7 @@
 { pkgs ? import <nixpkgs> { } }:
 pkgs.python3.pkgs.buildPythonPackage rec {
   name = "shell-gpt";
-  version = "0.9.3";
+  version = "1.4.3";
   format = "pyproject";
 
   src = builtins.fetchTarball {
