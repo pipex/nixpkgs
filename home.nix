@@ -4,7 +4,7 @@
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "flalanne";
-  home.homeDirectory = "/Users/flalanne";
+  home.homeDirectory = "/home/flalanne";
 
   fonts.fontconfig.enable = true;
 
@@ -27,12 +27,11 @@
     pkgs.mosh
     pkgs.bash
     pkgs.shellcheck
-    pkgs.reattach-to-user-namespace
     pkgs.libiconv
     pkgs.colordiff
     (pkgs.callPackage ./balena-cli.nix {
-      hash = "0m1vsww9swbl5raby00vzgb822pr8wbfsf696l609c3jdyv5yy3b"; 
-      version = "18.1.5";
+       hash = "1hp7zp9zcjq9qhv168nsxh4whrswzqlpp0zbnc1wly2zlw1kjbz9";
+      version = "18.2.2";
     })
     (pkgs.callPackage ./shell-gpt.nix { })
     (pkgs.nerdfonts.override { fonts = [ "SourceCodePro" ]; })
@@ -44,6 +43,8 @@
     pkgs.deadnix
     pkgs.statix
     pkgs.luarocks
+    pkgs.lua-language-server
+    pkgs.selene
   ];
 
   # Install AstroVim
