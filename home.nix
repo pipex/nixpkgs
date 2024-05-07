@@ -148,7 +148,9 @@
         # no need to remove nvm as that is redefined by nvm.sh
         unset -f node
         unset -f npm
+        unset -f nvim
       }
+
 
       # Create lazy versions of node/npm/nvm commands
       # that load nvm when first called 
@@ -165,6 +167,11 @@
       node() {
         load_nvm
         node $*
+      }
+
+      nvim() {
+        load_nvm
+        nvim $*
       }
 
       cb() {
