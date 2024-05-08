@@ -33,7 +33,7 @@
        hash = "1hp7zp9zcjq9qhv168nsxh4whrswzqlpp0zbnc1wly2zlw1kjbz9";
       version = "18.2.2";
     })
-    (pkgs.callPackage ./shell-gpt.nix { })
+    # (pkgs.callPackage ./shell-gpt.nix { })
     (pkgs.nerdfonts.override { fonts = [ "SourceCodePro" ]; })
     pkgs.gh
     pkgs.go
