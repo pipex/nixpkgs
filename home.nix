@@ -114,25 +114,70 @@
   # Git config using Home Manager modules
   programs.git = {
     enable = true;
+    # lfs.enable = true;
+    package = pkgs.gitAndTools.gitFull;
     userName = "Felipe Lalanne";
-    userEmail = "1822826+pipex@users.noreply.github.com";
+    userEmail = "felipe@lalanne.cl";
+
+    ignores = [
+      ".DS_Store"
+      "*.pyc"
+      "node_modules/"
+      ".envrc"
+      ".direnv*"
+      ".devenv*"
+    ];
+
     extraConfig = {
       init = {
         defaultBranch = "main";
       };
+      color = {
+        ui = true;
+      };
       push = {
+        default = "current";
         autoSetupRemote = true;
       };
       pull = {
+        ff = "only";
         rebase = true;
       };
       core = {
         editor = "nvim";
-        pager = "cat";
       };
     };
+
+    signing = {
+      key = "2CE4D30172CD04D5";
+      signByDefault = true;
+    };
+
+    # https://nix-community.github.io/home-manager/options.html#opt-programs.git.delta.enable
+    # https://github.com/dandavison/delta
+    delta = {
+      enable = true;
+      # options = {
+      #   features = "side-by-side";
+      # };
+    };
+
     aliases = {
+      # common aliases
+      br = "branch";
+      co = "checkout";
+      st = "status";
+      ls = "log --pretty=format:\"%C(yellow)%h%Cred%d\\\\ %Creset%s%Cblue\\\\ [%cn]\" --decorate";
+      ll = "log --pretty=format:\"%C(yellow)%h%Cred%d\\\\ %Creset%s%Cblue\\\\ [%cn]\" --decorate --numstat";
       lg = "log --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --all";
+      cm = "commit -m";
+      ca = "commit -am";
+      dc = "diff --cached";
+      amend = "commit --amend '-S'";
+
+      # aliases for submodule
+      update = "submodule update --init --recursive";
+      foreach = "submodule foreach";
     };
   };
 
