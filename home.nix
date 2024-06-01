@@ -17,7 +17,6 @@
     pkgs.gnumake
     pkgs.gcc
     pkgs.ripgrep
-    pkgs.neovim
     pkgs.tmux
     pkgs.curl
     pkgs.openssh
@@ -81,6 +80,12 @@
     lg = "lazygit";
   };
 
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    vimAlias = true;
+  };
+
   # A modern replacement for ‘ls’
   # useful in bash/zsh prompt, not in nushell.
   programs.eza = {
@@ -100,6 +105,10 @@
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
+  };
+
+  programs.gpg = {
+    enable = true;
   };
 
   # Git config using Home Manager modules
