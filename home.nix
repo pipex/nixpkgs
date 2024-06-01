@@ -221,7 +221,9 @@
       path = "${config.xdg.dataHome}/zsh/history";
     };
     initExtra = ''
+      export BALENARC_NO_ANALYTICS=1
       export BUILDKIT_PROGRESS=plain
+      export GPG_TTY=$(tty)
 
       cb() {
         if [ -d .git ]; then
