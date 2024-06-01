@@ -1,10 +1,13 @@
-{ config, pkgs, lib, ... }:
-
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  home.username = "flalanne";
-  home.homeDirectory = "/home/flalanne";
+  home.username = "felipe";
+  home.homeDirectory = "/home/felipe";
 
   fonts.fontconfig.enable = true;
 
@@ -13,7 +16,6 @@
     # pkgs is the set of all packages in the default home.nix implementation
     pkgs.gnumake
     pkgs.gcc
-    pkgs.fzf
     pkgs.ripgrep
     pkgs.neovim
     pkgs.tmux
@@ -30,12 +32,11 @@
     pkgs.libiconv
     pkgs.colordiff
     (pkgs.callPackage ./balena-cli.nix {
-       hash = "1hp7zp9zcjq9qhv168nsxh4whrswzqlpp0zbnc1wly2zlw1kjbz9";
+      hash = "1hp7zp9zcjq9qhv168nsxh4whrswzqlpp0zbnc1wly2zlw1kjbz9";
       version = "18.2.2";
     })
     # (pkgs.callPackage ./shell-gpt.nix { })
-    (pkgs.nerdfonts.override { fonts = [ "SourceCodePro" ]; })
-    pkgs.gh
+    (pkgs.nerdfonts.override {fonts = ["SourceCodePro"];})
     pkgs.go
     pkgs.bottom
     pkgs.gdu
@@ -46,17 +47,17 @@
     pkgs.lua-language-server
     pkgs.selene
     pkgs.python3
+    pkgs.nodejs_20
   ];
 
   # Install AstroVim
   xdg.configFile."nvim".recursive = true;
-  # xdg.configFile."nvim/lua/user".source = pkgs.fetchFromGitHub {
-  #   owner = "pipex";
-  #   repo = "astrovim";
-  #   rev = "736219d6caffde63aea44ee9802e28edbbec75eb";
-  #   sha256 = "1awq23rkfywi55hlvjl4srll6zans80rj4z58839x7ng27x5vrbf";
-  # };
-  xdg.configFile."nvim".source = ./astronvim;
+  xdg.configFile."nvim".source = pkgs.fetchFromGitHub {
+    owner = "pipex";
+    repo = "astrovim";
+    rev = "c56993d0a30e745cda6673bbfa1daabb0cadb8a1";
+    sha256 = "02v0dq6893dvq9l9iih1qj2mp39f0a2gl81ww88qf501c3f081l1";
+  };
 
   xdg.configFile."oh-my-zsh".source = ./oh-my-zsh;
 
@@ -75,10 +76,30 @@
 
   # Global shell aliases
   home.shellAliases = {
-    ls = "ls --color=auto";
-    ll = "ls -l";
+    balena-staging = "BALENARC_BALENA_URL=balena-staging.com BALENARC_DATA_DIRECTORY=~/.balenaStaging balena";
     vi = "nvim";
     lg = "lazygit";
+  };
+
+  # A modern replacement for ‘ls’
+  # useful in bash/zsh prompt, not in nushell.
+  programs.eza = {
+    enable = true;
+    git = true;
+    icons = true;
+  };
+
+  # skim provides a single executable: sk.
+  # Basically anywhere you would want to use grep, try sk instead.
+  programs.skim = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+  };
+
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
   };
 
   # Git config using Home Manager modules
@@ -114,11 +135,28 @@
   programs.direnv = {
     enable = true;
     enableZshIntegration = true;
+    enableBashIntegration = true;
+    nix-direnv = {
+      enable = true;
+    };
+  };
+
+  programs.gh = {
+    enable = true;
+    settings.git_protocol = "ssh";
+    gitCredentialHelper.enable = true;
   };
 
   programs.zsh = {
     enable = true;
     enableCompletion = true;
+    autosuggestion.enable = true;
+    # syntaxHighlighting = {
+    #   enable = true;
+    # };
+    syntaxHighlighting.enable = true;
+    autocd = true;
+
     localVariables = {
       TZ = "America/Santiago";
       EDITOR = "nvim";
@@ -130,61 +168,17 @@
     };
     initExtra = ''
       export BUILDKIT_PROGRESS=plain
-      export NVM_LOADED=false
-
-      load_nvm() {
-        # Do nothing if nvm has already been loaded
-        [ -z "$NVM_LOADED" ] && return
-
-        [ ! -d "$HOME/.nvm" ] && {echo "NVM not installed"; return 1}
-
-        # Remove the custom functions created here
-        unset -f node
-        unset -f npm
-        unset -f npx
-        unset -f nvim
-        unset -f nvm
-
-        export NVM_DIR="$HOME/.nvm"
-        [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-        [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-        unset NVM_LOADED
-      }
-
-
-      # Create lazy versions of node/npm/nvm commands
-      # that load nvm when first called 
-      nvm() {
-        load_nvm && nvm $*
-      }
-
-      npx() {
-        load_nvm && npx $*
-      }
-
-      npm() {
-        load_nvm && npm $*
-      }
-
-      node() {
-        load_nvm && node $*
-      }
-
-      old_nvim=$(which nvim || echo "/bin/false")
-      nvim() {
-        load_nvm && nvim $* || eval $old_nvim $*
-      }
 
       cb() {
         if [ -d .git ]; then
           ([ "$GIT_REPO_HOME" = "" ] || [ ! -d "$GIT_REPO_HOME" ]) && echo "Already in a git repository and not GIT_REPO_HOME defined" && return 1
           cd $GIT_REPO_HOME
         fi
-         
+
         repo="$GIT_REPO"
         folder="$1"
         branch="$1"
-        
+
         [ "$repo" = "" ] && echo "No GIT_REPO environment variable" && return 1
 
         if [ "$folder" = "" ]; then
@@ -212,7 +206,7 @@
 
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" ];
+      plugins = ["git"];
       custom = "${config.xdg.configHome}/oh-my-zsh";
       theme = "pipex";
       extraConfig = ''
@@ -234,6 +228,52 @@
     ];
   };
 
+  programs.starship = {
+    enable = true;
+
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+
+    settings = {
+      # add_newline = false;
+
+      # character = {
+      #   success_symbol = "[➜](bold green)";
+      #   error_symbol = "[➜](bold red)";
+      # };
+
+      package.disabled = true;
+
+      # https://starship.rs/presets/plain-text.html
+
+      character = {
+        success_symbol = "[>](bold green)";
+        error_symbol = "[x](bold red)";
+        vimcmd_symbol = "[<](bold green)";
+      };
+      docker_context = {
+        disabled = true;
+      };
+      golang = {
+        symbol = "go ";
+      };
+      lua = {
+        symbol = "lua ";
+      };
+      nodejs = {
+        symbol = "nodejs ";
+      };
+      nix_shell = {
+        disabled = true;
+      };
+      python = {
+        symbol = "python ";
+      };
+      rust = {
+        symbol = "rust ";
+      };
+    };
+  };
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
