@@ -1,9 +1,11 @@
+{ config
+, pkgs
+, ...
+}:
+let
+  unstable = import <unstable> { };
+in
 {
-  config,
-  pkgs,
-  lib,
-  ...
-}: {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "felipe";
@@ -12,41 +14,44 @@
   fonts.fontconfig.enable = true;
 
   # Packages to install
-  home.packages = [
+  home.packages = with pkgs; [
     # pkgs is the set of all packages in the default home.nix implementation
-    pkgs.gnumake
-    pkgs.gcc
-    pkgs.ripgrep
-    pkgs.tmux
-    pkgs.curl
-    pkgs.openssh
-    pkgs.lazygit
-    pkgs.rustup
-    pkgs.nixpkgs-fmt
-    pkgs.jq
-    pkgs.yq-go
-    pkgs.mosh
-    pkgs.bash
-    pkgs.shellcheck
-    pkgs.libiconv
-    pkgs.colordiff
-    (pkgs.callPackage ./balena-cli.nix {
+    gnumake
+    gcc
+    ripgrep
+    curl
+    openssh
+    lazygit
+    rustup
+    nixpkgs-fmt
+    jq
+    yq-go
+    mosh
+    bash
+    shellcheck
+    libiconv
+    colordiff
+    (callPackage ./balena-cli.nix {
       hash = "1hp7zp9zcjq9qhv168nsxh4whrswzqlpp0zbnc1wly2zlw1kjbz9";
       version = "18.2.2";
     })
     # (pkgs.callPackage ./shell-gpt.nix { })
-    (pkgs.nerdfonts.override {fonts = ["SourceCodePro"];})
-    pkgs.go
-    pkgs.bottom
-    pkgs.gdu
-    pkgs.alejandra
-    pkgs.deadnix
-    pkgs.statix
-    pkgs.luarocks
-    pkgs.lua-language-server
-    pkgs.selene
-    pkgs.python3
-    pkgs.nodejs_20
+    (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
+
+    nodejs_20 # A JavaScript runtime built on Chrome's V8 JavaScript engine
+    bun
+    shellcheck # shell script analysis tool
+    shfmt # A shell parser, formatter, and interpreter (POSIX/Bash/mksh)
+    rustup # Rust updater
+    alejandra # The Uncompromising Nix Code Formatter
+    deadnix # Nix
+    statix # Nix
+    go # Golang
+    hadolint # Dockerfile linter, validate inline bash scripts
+    luarocks # Lua linter
+    nixd
+    go
+    bottom
   ];
 
   # Install AstroVim
@@ -54,8 +59,8 @@
   xdg.configFile."nvim".source = pkgs.fetchFromGitHub {
     owner = "pipex";
     repo = "astrovim";
-    rev = "c56993d0a30e745cda6673bbfa1daabb0cadb8a1";
-    sha256 = "02v0dq6893dvq9l9iih1qj2mp39f0a2gl81ww88qf501c3f081l1";
+    rev = "84b88be";
+    sha256 = "1h9km6v6a2rjy4g8h7njn0dyh16vvxw7nphmkjm1shdyxjw4fz5n";
   };
 
   xdg.configFile."oh-my-zsh".source = ./oh-my-zsh;
@@ -76,14 +81,22 @@
   # Global shell aliases
   home.shellAliases = {
     balena-staging = "BALENARC_BALENA_URL=balena-staging.com BALENARC_DATA_DIRECTORY=~/.balenaStaging balena";
+    balena-support = "BALENARC_DATA_DIRECTORY=~/.balenaSupport balena";
     vi = "nvim";
     lg = "lazygit";
+    cd = "z";
+  };
+
+  programs.tmux = {
+    enable = true;
+    package = unstable.tmux;
   };
 
   programs.neovim = {
     enable = true;
     defaultEditor = true;
     vimAlias = true;
+    package = unstable.neovim-unwrapped;
   };
 
   # A modern replacement for ‘ls’
@@ -181,6 +194,12 @@
     };
   };
 
+  programs.zoxide = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+  };
+
   programs.autojump = {
     enable = true;
     enableZshIntegration = true;
@@ -262,7 +281,7 @@
 
     oh-my-zsh = {
       enable = true;
-      plugins = ["git"];
+      plugins = [ "git" ];
       custom = "${config.xdg.configHome}/oh-my-zsh";
       theme = "pipex";
       extraConfig = ''
@@ -339,7 +358,7 @@
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "23.11";
+  home.stateVersion = "24.05";
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
