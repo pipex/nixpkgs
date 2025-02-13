@@ -1,5 +1,6 @@
 { config
 , pkgs
+, lib
 , ...
 }:
 let
@@ -32,13 +33,13 @@ in
     libiconv
     colordiff
     (callPackage ./balena-cli.nix {
-      hash = "1hp7zp9zcjq9qhv168nsxh4whrswzqlpp0zbnc1wly2zlw1kjbz9";
-      version = "18.2.2";
+      hash = "1il7c4blkhk5n290b2dmgxmz05fv2hy1rirmjf2pfm5mk3iqbp9d";
+      version = "20.2.1";
     })
     # (pkgs.callPackage ./shell-gpt.nix { })
     (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
 
-    nodejs_20 # A JavaScript runtime built on Chrome's V8 JavaScript engine
+    nodejs_22 # A JavaScript runtime built on Chrome's V8 JavaScript engine
     bun
     shellcheck # shell script analysis tool
     shfmt # A shell parser, formatter, and interpreter (POSIX/Bash/mksh)
@@ -59,8 +60,8 @@ in
   xdg.configFile."nvim".source = pkgs.fetchFromGitHub {
     owner = "pipex";
     repo = "astrovim";
-    rev = "84b88be";
-    sha256 = "1h9km6v6a2rjy4g8h7njn0dyh16vvxw7nphmkjm1shdyxjw4fz5n";
+    rev = "82e0f2e";
+    sha256 = "0wn4qbb944xa1pywzamjfrmg3knwh9va1cw0wiq8zwk8brpsdig1";
   };
 
   xdg.configFile."oh-my-zsh".source = ./oh-my-zsh;
@@ -77,6 +78,12 @@ in
 
   # Prettier
   home.file.".prettierrc.json".source = ./prettierrc.json;
+  # Avoid bugs with npm like https://github.com/NixOS/nixpkgs/issues/16441
+  home.file.".npmrc".text = lib.generators.toINIWithGlobalSection { } {
+    globalSection = {
+      prefix = "~/.npm";
+    };
+  };
 
   # Global shell aliases
   home.shellAliases = {
@@ -200,11 +207,6 @@ in
     enableZshIntegration = true;
   };
 
-  programs.autojump = {
-    enable = true;
-    enableZshIntegration = true;
-  };
-
   programs.direnv = {
     enable = true;
     enableZshIntegration = true;
@@ -224,9 +226,6 @@ in
     enable = true;
     enableCompletion = true;
     autosuggestion.enable = true;
-    # syntaxHighlighting = {
-    #   enable = true;
-    # };
     syntaxHighlighting.enable = true;
     autocd = true;
 
@@ -239,6 +238,9 @@ in
       size = 10000;
       path = "${config.xdg.dataHome}/zsh/history";
     };
+    profileExtra = ''
+      export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin:$HOME/.npm/bin:$HOME/.cargo/bin"
+    '';
     initExtra = ''
       export BALENARC_NO_ANALYTICS=1
       export BUILDKIT_PROGRESS=plain
@@ -281,7 +283,7 @@ in
 
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" ];
+      plugins = [ "git docker" ];
       custom = "${config.xdg.configHome}/oh-my-zsh";
       theme = "pipex";
       extraConfig = ''
