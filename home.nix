@@ -14,7 +14,7 @@ in
 
   fonts.fontconfig.enable = true;
 
-  # Packages to install
+    # Packages to install
   home.packages = with pkgs; [
     # pkgs is the set of all packages in the default home.nix implementation
     gnumake
@@ -23,7 +23,6 @@ in
     curl
     openssh
     lazygit
-    rustup
     nixpkgs-fmt
     jq
     yq-go
@@ -37,8 +36,7 @@ in
       version = "20.2.1";
     })
     # (pkgs.callPackage ./shell-gpt.nix { })
-    (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
-
+    nerd-fonts.sauce-code-pro
     nodejs_22 # A JavaScript runtime built on Chrome's V8 JavaScript engine
     bun
     shellcheck # shell script analysis tool
@@ -60,8 +58,8 @@ in
   xdg.configFile."nvim".source = pkgs.fetchFromGitHub {
     owner = "pipex";
     repo = "astrovim";
-    rev = "82e0f2e";
-    sha256 = "0wn4qbb944xa1pywzamjfrmg3knwh9va1cw0wiq8zwk8brpsdig1";
+    rev = "7192b23";
+    sha256 = "0nv001daa6x72d6xsx8797w4jgs33q2c2sg4mm3fis8ks20bz903";
   };
 
   xdg.configFile."oh-my-zsh".source = ./oh-my-zsh;
@@ -111,7 +109,7 @@ in
   programs.eza = {
     enable = true;
     git = true;
-    icons = true;
+    icons = "auto";
   };
 
   # skim provides a single executable: sk.
