@@ -3,9 +3,6 @@
 , lib
 , ...
 }:
-let
-  unstable = import <unstable> { };
-in
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -94,14 +91,12 @@ in
 
   programs.tmux = {
     enable = true;
-    package = unstable.tmux;
   };
 
   programs.neovim = {
     enable = true;
     defaultEditor = true;
     vimAlias = true;
-    package = unstable.neovim-unwrapped;
   };
 
   # A modern replacement for ‘ls’
