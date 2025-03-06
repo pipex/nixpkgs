@@ -13,7 +13,6 @@
     # Don't forget to add it to the `home.packages` section
     SWEET_HOME_SHELL = "zsh";
   };
-
   fonts.fontconfig.enable = true;
 
     # Packages to install
@@ -38,6 +37,7 @@
       version = "20.2.1";
     })
     # (pkgs.callPackage ./shell-gpt.nix { })
+    source-code-pro
     nerd-fonts.sauce-code-pro
     nodejs_22 # A JavaScript runtime built on Chrome's V8 JavaScript engine
     bun
