@@ -37,7 +37,6 @@
       version = "20.2.1";
     })
     # (pkgs.callPackage ./shell-gpt.nix { })
-    source-code-pro
     nerd-fonts.sauce-code-pro
     nodejs_22 # A JavaScript runtime built on Chrome's V8 JavaScript engine
     bun
@@ -61,8 +60,8 @@
   xdg.configFile."nvim".source = pkgs.fetchFromGitHub {
     owner = "pipex";
     repo = "astrovim";
-    rev = "7192b23";
-    sha256 = "0nv001daa6x72d6xsx8797w4jgs33q2c2sg4mm3fis8ks20bz903";
+    rev = "90fa622564cfd099d8f404babcacd7eeba729ddc";
+    sha256 = "0qd1kw21mzrcr920v629rgmsbwfqw39q5m1jlbhyyclksm0vx9hl";
   };
 
   xdg.configFile."oh-my-zsh".source = ./oh-my-zsh;
