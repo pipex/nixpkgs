@@ -324,6 +324,9 @@
       docker_context = {
         disabled = true;
       };
+      container = {
+        disabled = true;
+      };
       golang = {
         symbol = "go ";
       };
