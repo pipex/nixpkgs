@@ -8,6 +8,9 @@
   # paths it should manage.
   home.username = "felipe";
   home.homeDirectory = "/home/felipe";
+  home.sessionVars = {
+    SWEET_HOME_SHELL="zsh";
+  };
 
   fonts.fontconfig.enable = true;
 
@@ -48,6 +51,7 @@
     nixd
     go
     bottom
+    docker
   ];
 
   # Install AstroVim
